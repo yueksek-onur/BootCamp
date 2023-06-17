@@ -1,0 +1,40 @@
+html {
+  box-sizing: border-box;
+  font-family: monospace;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: rgba(152, 217, 245, 0.05);
+}
+
+body {
+  margin: 0;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(152, 217, 245, 0.15);
+  padding: 2rem 1rem;
+  flex-wrap: wrap;
+}
+
+button {
+  background-color: rgba(152, 217, 245);
+}
+
+article {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
