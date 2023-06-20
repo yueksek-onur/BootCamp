@@ -1,7 +1,5 @@
 "use strict";
 
-let todo = {};
-
 const ul = document.getElementById("todo-list");
 const addBTN = document.getElementById("add-button");
 const divFilter = document.getElementById("div-filter");
@@ -9,7 +7,6 @@ const removeBTN = document.getElementById("remove-button");
 const inputfield = document.getElementById("input-field");
 
 addBTN.addEventListener("click", () => {
-  console.log(inputfield.value);
   getDataFromAPI("POST", 0, "", inputfield.value);
   getDataFromAPI();
   inputfield.value = "";
@@ -30,7 +27,6 @@ divFilter.addEventListener("click", () => {
 removeBTN.addEventListener("click", () => {
   for (const child of ul.children) {
     if (child.children[0].checked) {
-      console.log(child.id);
       getDataFromAPI("DELETE", child.id);
       getDataFromAPI();
     }
@@ -38,13 +34,11 @@ removeBTN.addEventListener("click", () => {
 });
 
 ul.addEventListener("change", (event) => {
-  //console.log(event.currentTarget.children);
   const todo = {
     id: event.target.nextSibling.parentElement.id,
     description: event.target.nextSibling.data,
     done: event.target.checked,
   };
-  console.log(todo);
   getDataFromAPI("PUT", event.target.nextSibling.parentElement.id, todo);
 });
 
@@ -79,7 +73,6 @@ function getDataFromAPI(HttpMethod, id, updateTODO, newTodo, filter) {
     })
       .then((req) => req.json())
       .then((todos) => {
-        console.log(todos);
         renderTodos(todos);
       });
   } else if (HttpMethod === "PUT") {
@@ -113,7 +106,6 @@ function getDataFromAPI(HttpMethod, id, updateTODO, newTodo, filter) {
         .then((req) => req.json())
         .then((todos) => {
           const filteredArray = todos.filter((todos) => todos.done === true);
-          console.log(filteredArray);
           renderTodos(filteredArray);
         });
     } else {
