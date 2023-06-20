@@ -23,7 +23,7 @@ In this task you will setup the Todo API on your local computer.
 
 ---
 
-# Todo App with Todo API
+## 3.Todo App with Todo API
 
 - [x] Create a folder (and repository) for a Todo App that will use the Todo API
 - [x] Start from scratch and DO NOT copy any code
@@ -34,6 +34,6 @@ In this task you will setup the Todo API on your local computer.
   - [x] Add a `Delete Done Todos` button that will delete all done todos from the Todo API
 - [ ] Keep your local state, backend state and the UI in sync
 
-## Hints
+### Hints
 
 The Fetch API uses promises which is async.
