@@ -11,6 +11,7 @@ const inputfield = document.getElementById("input-field");
 addBTN.addEventListener("click", () => {
   console.log(inputfield.value);
   getDataFromAPI("POST", 0, "", inputfield.value);
+  getDataFromAPI();
   inputfield.value = "";
 });
 
@@ -36,6 +37,17 @@ removeBTN.addEventListener("click", () => {
   }
 });
 
+ul.addEventListener("change", (event) => {
+  //console.log(event.currentTarget.children);
+  const todo = {
+    id: event.target.nextSibling.parentElement.id,
+    description: event.target.nextSibling.data,
+    done: event.target.checked,
+  };
+  console.log(todo);
+  getDataFromAPI("PUT", event.target.nextSibling.parentElement.id, todo);
+});
+
 function renderTodos(todos) {
   ul.innerHTML = "";
 
@@ -53,7 +65,7 @@ function renderTodos(todos) {
   });
 }
 
-function getDataFromAPI(HttpMethod, id, todos, newTodo, filter) {
+function getDataFromAPI(HttpMethod, id, updateTODO, newTodo, filter) {
   const URL = "http://localhost:4730/todos";
 
   if (HttpMethod === "POST") {
@@ -71,7 +83,17 @@ function getDataFromAPI(HttpMethod, id, todos, newTodo, filter) {
         renderTodos(todos);
       });
   } else if (HttpMethod === "PUT") {
-    //
+    fetch(URL + "/" + id, {
+      method: HttpMethod,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateTODO),
+    })
+      .then((req) => req.json())
+      .then((todos) => {
+        renderTodos(todos);
+      });
   } else if (HttpMethod === "DELETE") {
     fetch(URL + "/" + id, {
       method: HttpMethod,
@@ -98,7 +120,6 @@ function getDataFromAPI(HttpMethod, id, todos, newTodo, filter) {
       fetch(URL)
         .then((req) => req.json())
         .then((todos) => {
-          console.log(todos);
           renderTodos(todos);
         });
     }
