@@ -15,4 +15,5 @@
 ## Commenting this out is preferred by some people, see
 ## https://docs.npmjs.com/misc/faq#should-i-check-my-node_modules-folder-into-git
 node_modules
-.vscode /setting.json
+004-Restful-Backends/004-TodoApp/.vscode
+004-Restful-Backends/004-TodoApp/.vscode /setting.json
