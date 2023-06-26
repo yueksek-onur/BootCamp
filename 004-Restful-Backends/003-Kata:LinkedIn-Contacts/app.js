@@ -37,4 +37,4 @@ function RenderPicture(user, key) {
   document.getElementById("listContainer").appendChild(img);
 }
 
-getUsers(5);
+getUsers(8);
